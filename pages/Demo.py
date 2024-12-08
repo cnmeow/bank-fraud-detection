@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Demo", page_icon="📊")
 st.header('Demo')
-dataset_options = sorted(os.listdir('/Users/cnmeow/streamlit/dataset_resampled/test'))
+dataset_options = sorted(os.listdir('dataset_resampled/test'))
 dataset_selected = st.selectbox(label='Select dataset', options=dataset_options)
 name_dataset = dataset_selected.split('.')[0]
-xgb_options = sorted(os.listdir(f'/Users/cnmeow/streamlit/checkpoints/xgboost'))
-lgb_options = sorted(os.listdir('/Users/cnmeow/streamlit/checkpoints/lightgbm'))
+xgb_options = sorted(os.listdir(f'checkpoints/xgboost'))
+lgb_options = sorted(os.listdir('checkpoints/lightgbm'))
 
 col1, col2 = st.columns(2)
 with col1:
@@ -22,12 +22,12 @@ with col2:
   lgb_selected = st.selectbox(label='Select checkpoint for LightGBM', options=lgb_options)
 
 def Demo(xgb_selected, lgb_selected, dataset_selected):
-  test_file = f'/Users/cnmeow/streamlit/dataset_resampled/test/{dataset_selected}'
+  test_file = f'dataset_resampled/test/{dataset_selected}'
   df_test = pd.read_csv(test_file)
   X_test = df_test.drop(columns=['fraud_bool'])
   y_test = df_test['fraud_bool']
   
-  xgboost_checkpoint = f'/Users/cnmeow/streamlit/checkpoints/xgboost/{xgb_selected}'
+  xgboost_checkpoint = f'checkpoints/xgboost/{xgb_selected}'
   xgboost_loaded = xgb.Booster(model_file=xgboost_checkpoint)
   xgboost_dtest = xgb.DMatrix(X_test, label=y_test)
   xgboost_pred = xgboost_loaded.predict(xgboost_dtest)
@@ -53,7 +53,7 @@ def Demo(xgb_selected, lgb_selected, dataset_selected):
     xgb.plot_importance(xgboost_loaded, importance_type='weight', max_num_features=10, height=0.5, ax=ax1)
     st.pyplot(fig1)
   
-  lightgbm_checkpoint = f'/Users/cnmeow/streamlit/checkpoints/lightgbm/{lgb_selected}'
+  lightgbm_checkpoint = f'checkpoints/lightgbm/{lgb_selected}'
   lightgbm_loaded = lgb.Booster(model_file=lightgbm_checkpoint)
   lightgbm_pred = lightgbm_loaded.predict(X_test, num_iteration=lightgbm_loaded.best_iteration)
   lightgbm_pred_binary = (lightgbm_pred >= 0.5).astype(int)
