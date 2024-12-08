@@ -5,17 +5,17 @@ import os
 
 st.set_page_config(page_title="Plotting Data", page_icon="📈")
 st.header('Plotting Data')
-option_list = sorted(os.listdir('/Users/cnmeow/streamlit/dataset/'))
+option_list = sorted(os.listdir('dataset'))
 dataset_selected = st.selectbox(label='Select dataset', options=option_list)
 
 col1, col2 = st.columns(2)
 def PlotDataset(dataset):
-  file_original = f'/Users/cnmeow/streamlit/dataset/{dataset}'
+  file_original = f'dataset/{dataset}'
   df_original = pd.read_csv(file_original)
   
-  file_resampled_train = f'/Users/cnmeow/streamlit/dataset_resampled/train/{dataset}'
+  file_resampled_train = f'dataset_resampled/train/{dataset}'
   df_resampled_train = pd.read_csv(file_resampled_train)
-  file_resampled_test = f'/Users/cnmeow/streamlit/dataset_resampled/test/{dataset}'
+  file_resampled_test = f'dataset_resampled/test/{dataset}'
   df_resampled_test = pd.read_csv(file_resampled_test)
   df_resampled = pd.concat([df_resampled_train, df_resampled_test])
   
