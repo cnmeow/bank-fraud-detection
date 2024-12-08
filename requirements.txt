@@ -1,3 +1,4 @@
 plotly
 xgboost
 lightgbm
+scikit-learn
