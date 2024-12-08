@@ -2,3 +2,4 @@ plotly
 xgboost
 lightgbm
 scikit-learn
+matplotlib
