@@ -1,4 +1,8 @@
 # Streamlit application for Bank Fraud Detection
+This repository focuses on **Bank Fraud Detection**, providing a comprehensive approach to handling imbalanced datasets. We apply **SMOTE** (Synthetic Minority Over-sampling Technique) to balance the data, ensuring better performance and fairness in the detection process. The project utilizes powerful machine learning models, **XGBoost** and **LightGBM**, to accurately identify fraudulent activities.
+
+With pre-trained models and a user-friendly interface for data visualization and prediction, this repository serves as a robust solution for fraud detection tasks.
+
 ## CS313 - Data Mining and Application - Group 2
 - Tran Kim Ngoc Ngan (22520002)
 - Tran Nhu Cam Nguyen (22520004)
